@@ -19,7 +19,7 @@ const PostCreate = () => {
       <h3>Create Post</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label>Title</label>
+          <label className="fs-2 fw-bold">Title</label>
           <input
             className="form-control mt-1"
             value={title}

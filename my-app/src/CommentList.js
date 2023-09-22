@@ -14,10 +14,10 @@ export default function CommentList({ postId }) {
 
   useEffect(() => {
     fetchAllComments();
-  }, []);
+  }, []); // eslint-disable-next-line
 
   const cmt_arr = Object.values(list).map((comment) => {
     return <li key={comment.id}>{comment.content}</li>;
   });
-  return <ul className="border border-green mt-2">{cmt_arr}</ul>;
+  return <ul className="border border-green mt-2 ">{cmt_arr}</ul>;
 }
