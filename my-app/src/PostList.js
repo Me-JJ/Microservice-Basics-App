@@ -8,6 +8,7 @@ const PostList = () => {
   const fetchPosts = async () => {
     try {
       const res = await axios.get("http://posts.com/posts");
+      // console.log("get /posts -> ", res);
       setPosts(res.data);
     } catch ({ response }) {
       if (response) {
