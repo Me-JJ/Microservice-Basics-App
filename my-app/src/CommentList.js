@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-export default function CommentList({ postId }) {
-  const [list, setList] = useState({});
+export default function CommentList({ comments }) {
+  const cmt_arr = comments.map((comment) => {
+    let content;
 
-  const fetchAllComments = async () => {
-    const res = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
+    if (comment.status === "approved") {
+      content = comment.content;
+    }
+    if (comment.status === "pending") {
+      content = "Moderating Comment";
+    }
+    if (comment.status === "rejected") {
+      content = "Rejected Comment, no oranges allowed!";
+    }
 
-    setList(res.data);
-  };
-
-  useEffect(() => {
-    fetchAllComments();
-  }, []); // eslint-disable-next-line
-
-  const cmt_arr = Object.values(list).map((comment) => {
-    return <li key={comment.id}>{comment.content}</li>;
+    return <li key={comment.id}>{content}</li>;
   });
   return <ul className="border border-green mt-2 ">{cmt_arr}</ul>;
 }
